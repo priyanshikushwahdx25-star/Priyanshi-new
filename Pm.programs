@@ -1,0 +1,397 @@
+1. Swap two variables (using function)
+C++
+#include <iostream>
+using namespace std;
+
+void swapNum(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    swapNum(x, y);
+    cout << "After swap: " << x << " " << y;
+}
+2. Roots of Quadratic Equation
+C++
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void roots(float a, float b, float c) {
+    float d = b*b - 4*a*c;
+    if(d > 0)
+        cout << "Real roots: " << (-b + sqrt(d))/(2*a) << " , " << (-b - sqrt(d))/(2*a);
+    else if(d == 0)
+        cout << "Equal roots: " << -b/(2*a);
+    else
+        cout << "Imaginary roots";
+}
+
+int main() {
+    roots(1, -3, 2);
+}
+3. Area using switch case
+C++
+#include <iostream>
+using namespace std;
+
+void area() {
+    int choice;
+    cout << "1.Circle 2.Rectangle 3.Square: ";
+    cin >> choice;
+
+    switch(choice) {
+        case 1: {
+            float r;
+            cin >> r;
+            cout << 3.14*r*r;
+            break;
+        }
+        case 2: {
+            float l,b;
+            cin >> l >> b;
+            cout << l*b;
+            break;
+        }
+        case 3: {
+            float s;
+            cin >> s;
+            cout << s*s;
+            break;
+        }
+    }
+}
+
+int main() {
+    area();
+}
+4. Table of number
+C++
+#include <iostream>
+using namespace std;
+
+void table(int n) {
+    for(int i=1;i<=10;i++)
+        cout << n << " x " << i << " = " << n*i << endl;
+}
+
+int main() {
+    table(5);
+}
+5. Fibonacci Series
+C++
+#include <iostream>
+using namespace std;
+
+void fibonacci(int n) {
+    int a=0,b=1,c;
+    for(int i=0;i<n;i++) {
+        cout << a << " ";
+        c=a+b;
+        a=b;
+        b=c;
+    }
+}
+
+int main() {
+    fibonacci(10);
+}
+6. Factorial using recursion
+C++
+#include <iostream>
+using namespace std;
+
+int fact(int n) {
+    if(n==0) return 1;
+    return n * fact(n-1);
+}
+
+int main() {
+    cout << fact(5);
+}
+7. Decimal to Binary
+C++
+#include <iostream>
+using namespace std;
+
+void binary(int n) {
+    if(n==0) return;
+    binary(n/2);
+    cout << n%2;
+}
+
+int main() {
+    binary(10);
+}
+8. Palindrome String
+C++
+#include <iostream>
+using namespace std;
+
+void palindrome(string str) {
+    string rev="";
+    for(int i=str.length()-1;i>=0;i--)
+        rev += str[i];
+
+    if(str==rev) cout<<"Palindrome";
+    else cout<<"Not Palindrome";
+}
+
+int main() {
+    palindrome("madam");
+}
+9. Reverse digits
+C++
+#include <iostream>
+using namespace std;
+
+void reverseNum(int n) {
+    int rev=0;
+    while(n>0) {
+        rev = rev*10 + n%10;
+        n/=10;
+    }
+    cout << rev;
+}
+
+int main() {
+    reverseNum(1234);
+}
+10. Sum of two matrices
+C++
+#include <iostream>
+using namespace std;
+
+void sumMatrix() {
+    int a[2][2]={{1,2},{3,4}}, b[2][2]={{5,6},{7,8}};
+    int c[2][2];
+
+    for(int i=0;i<2;i++)
+        for(int j=0;j<2;j++)
+            c[i][j]=a[i][j]+b[i][j];
+
+    for(int i=0;i<2;i++){
+        for(int j=0;j<2;j++)
+            cout<<c[i][j]<<" ";
+        cout<<endl;
+    }
+}
+
+int main() {
+    sumMatrix();
+}
+11. Multiplication of matrices
+C++
+#include <iostream>
+using namespace std;
+
+void multiply() {
+    int a[2][2]={{1,2},{3,4}}, b[2][2]={{5,6},{7,8}}, c[2][2]={0};
+
+    for(int i=0;i<2;i++)
+        for(int j=0;j<2;j++)
+            for(int k=0;k<2;k++)
+                c[i][j]+=a[i][k]*b[k][j];
+
+    for(int i=0;i<2;i++){
+        for(int j=0;j<2;j++)
+            cout<<c[i][j]<<" ";
+        cout<<endl;
+    }
+}
+
+int main() {
+    multiply();
+}
+12. Even/Odd series
+C++
+#include <iostream>
+using namespace std;
+
+void series() {
+    cout<<"Even: ";
+    for(int i=1;i<=100;i++)
+        if(i%2==0) cout<<i<<" ";
+
+    cout<<"\nOdd: ";
+    for(int i=1;i<=100;i++)
+        if(i%2!=0) cout<<i<<" ";
+}
+
+int main() {
+    series();
+}
+13. Prime number
+C++
+#include <iostream>
+using namespace std;
+
+void prime(int n) {
+    int flag=0;
+    for(int i=2;i<n;i++)
+        if(n%i==0) flag=1;
+
+    if(flag==0) cout<<"Prime";
+    else cout<<"Not Prime";
+}
+
+int main() {
+    prime(7);
+}
+14. Call by value & reference
+C++
+#include <iostream>
+using namespace std;
+
+void value(int a) {
+    a = a + 10;
+}
+
+void reference(int &a) {
+    a = a + 10;
+}
+
+int main() {
+    int x=5;
+    value(x);
+    cout<<"Value: "<<x<<endl;
+
+    reference(x);
+    cout<<"Reference: "<<x;
+}
+15. Pyramid
+C++
+#include <iostream>
+using namespace std;
+
+void pyramid(int n) {
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=i;j++)
+            cout<<j;
+        cout<<endl;
+    }
+}
+
+int main() {
+    pyramid(4);
+}
+16. Armstrong number
+C++
+#include <iostream>
+using namespace std;
+
+void armstrong(int n) {
+    int sum=0,temp=n,r;
+    while(n>0){
+        r=n%10;
+        sum += r*r*r;
+        n/=10;
+    }
+
+    if(sum==temp) cout<<"Armstrong";
+    else cout<<"Not Armstrong";
+}
+
+int main() {
+    armstrong(153);
+}
+17. Average of N numbers
+C++
+#include <iostream>
+using namespace std;
+
+void average() {
+    int n,sum=0,x;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>x;
+        sum+=x;
+    }
+    cout<<"Average: "<<(float)sum/n;
+}
+
+int main() {
+    average();
+}
+18. Class (Area & Volume using constructor)
+C++
+#include <iostream>
+using namespace std;
+
+class Box {
+    int l,b,h;
+public:
+    Box(int x,int y,int z){
+        l=x; b=y; h=z;
+    }
+
+    void display(){
+        cout<<"Area: "<<2*(l*b + b*h + h*l)<<endl;
+        cout<<"Volume: "<<l*b*h;
+    }
+};
+
+int main() {
+    Box obj(2,3,4);
+    obj.display();
+}
+19. Time addition (Class)
+C++
+#include <iostream>
+using namespace std;
+
+class Time {
+    int h,m,s;
+public:
+    void input(){
+        cin>>h>>m>>s;
+    }
+
+    void add(Time t1, Time t2){
+        s = t1.s + t2.s;
+        m = t1.m + t2.m + s/60;
+        h = t1.h + t2.h + m/60;
+
+        s%=60;
+        m%=60;
+    }
+
+    void display(){
+        cout<<h<<":"<<m<<":"<<s;
+    }
+};
+
+int main() {
+    Time t1,t2,t3;
+    t1.input();
+    t2.input();
+    t3.add(t1,t2);
+    t3.display();
+}
+20. Single Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() {
+        cout<<"Class A"<<endl;
+    }
+};
+
+class B : public A {
+public:
+    void showB() {
+        cout<<"Class B";
+    }
+};
+
+int main() {
+    B obj;
+    obj.showA();
+    obj.showB();
+}
