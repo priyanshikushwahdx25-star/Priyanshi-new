@@ -1,0 +1,1084 @@
+1. Function Prototype and Definition
+C++
+#include <iostream>
+using namespace std;
+
+void greet(); // prototype
+
+int main() {
+    greet();
+    return 0;
+}
+
+void greet() { // definition
+    cout << "Hello, this is function definition!";
+}
+Output:
+
+Hello, this is function definition!
+2. Call by Value and Call by Reference
+C++
+#include <iostream>
+using namespace std;
+
+void callByValue(int x) {
+    x = x + 10;
+}
+
+void callByReference(int &y) {
+    y = y + 10;
+}
+
+int main() {
+    int a = 5, b = 5;
+
+    callByValue(a);
+    callByReference(b);
+
+    cout << "Call by Value: " << a << endl;
+    cout << "Call by Reference: " << b;
+}
+Output:
+
+Call by Value: 5
+Call by Reference: 15
+3. Swap using Pointers
+C++
+#include <iostream>
+using namespace std;
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+
+    swap(&x, &y);
+
+    cout << "After swap: " << x << " " << y;
+}
+Output:
+
+After swap: 20 10
+4. Return by Reference
+C++
+#include <iostream>
+using namespace std;
+
+int& func(int &x) {
+    return x;
+}
+
+int main() {
+    int a = 10;
+    func(a) = 50;
+
+    cout << "Value of a: " << a;
+}
+Output:
+
+Value of a: 50
+5. Inline Function (Square)
+C++
+#include <iostream>
+using namespace std;
+
+inline int square(int x) {
+    return x * x;
+}
+
+int main() {
+    cout << "Square: " << square(5);
+}
+Output:
+
+Square: 25
+6. Default Arguments
+C++
+#include <iostream>
+using namespace std;
+
+int add(int a, int b = 10) {
+    return a + b;
+}
+
+int main() {
+    cout << add(5) << endl;
+    cout << add(5, 20);
+}
+Output:
+
+15
+25
+7. Constant Arguments
+C++
+#include <iostream>
+using namespace std;
+
+void show(const int x) {
+    // x = x + 1; // not allowed
+    cout << x;
+}
+
+int main() {
+    int a = 10;
+    show(a);
+}
+Output:
+
+10
+8. Function Overloading (Area)
+C++
+#include <iostream>
+using namespace std;
+
+float area(float r) {
+    return 3.14 * r * r;
+}
+
+int area(int l, int b) {
+    return l * b;
+}
+
+int main() {
+    cout << "Circle Area: " << area(5.0) << endl;
+    cout << "Rectangle Area: " << area(4, 6);
+}
+Output:
+
+Circle Area: 78.5
+Rectangle Area: 24
+9. Sum of Array Elements
+C++
+#include <iostream>
+using namespace std;
+
+int sum(int arr[], int n) {
+    int s = 0;
+    for(int i = 0; i < n; i++)
+        s += arr[i];
+    return s;
+}
+
+int main() {
+    int arr[] = {1,2,3,4,5};
+    cout << "Sum: " << sum(arr, 5);
+}
+Output:
+
+Sum: 15
+10. Maximum Element in Array
+C++
+#include <iostream>
+using namespace std;
+
+int maxElement(int arr[], int n) {
+    int max = arr[0];
+    for(int i = 1; i < n; i++)
+        if(arr[i] > max)
+            max = arr[i];
+    return max;
+}
+
+int main() {
+    int arr[] = {10, 50, 30, 20};
+    cout << "Maximum: " << maxElement(arr, 4);
+}
+Output:
+
+Maximum: 50
+11. Class and Student Details
+C++
+#include <iostream>
+using namespace std;
+
+class Student {
+public:
+    int id;
+    string name;
+
+    void display() {
+        cout << id << " " << name;
+    }
+};
+
+int main() {
+    Student s;
+    s.id = 1;
+    s.name = "Priyanshi";
+
+    s.display();
+}
+Output:
+
+1 Priyanshi
+12. Member Functions Inside & Outside Class
+C++
+#include <iostream>
+using namespace std;
+
+class Demo {
+public:
+    void show(); // declaration
+};
+
+void Demo::show() { // outside definition
+    cout << "Function defined outside class";
+}
+
+int main() {
+    Demo d;
+    d.show();
+}
+Output:
+
+Function defined outside class
+13. Nesting of Member Functions
+C++
+#include <iostream>
+using namespace std;
+
+class Nest {
+    int a, b;
+public:
+    void input() {
+        a = 5; b = 10;
+    }
+    void sum() {
+        cout << "Sum: " << a + b;
+    }
+    void display() {
+        input();
+        sum();
+    }
+};
+
+int main() {
+    Nest n;
+    n.display();
+}
+Output:
+
+Sum: 15
+14. Private Member Function
+C++
+#include <iostream>
+using namespace std;
+
+class Test {
+private:
+    void show() {
+        cout << "Private function";
+    }
+public:
+    void call() {
+        show();
+    }
+};
+
+int main() {
+    Test t;
+    t.call();
+}
+Output:
+
+Private function
+15. Array in Class (Marks)
+C++
+#include <iostream>
+using namespace std;
+
+class Marks {
+    int m[3];
+public:
+    void input() {
+        m[0]=80; m[1]=85; m[2]=90;
+    }
+    void display() {
+        cout << "Marks: ";
+        for(int i=0;i<3;i++)
+            cout << m[i] << " ";
+    }
+};
+
+int main() {
+    Marks obj;
+    obj.input();
+    obj.display();
+}
+Output:
+
+Marks: 80 85 90
+
+16. Memory allocation for objects
+C++
+#include <iostream>
+using namespace std;
+
+class Test {
+public:
+    int x;
+    void show() {
+        cout << "Value: " << x << endl;
+    }
+};
+
+int main() {
+    Test *t = new Test;   // dynamic allocation
+    t->x = 10;
+    t->show();
+    delete t;
+    return 0;
+}
+Output:
+
+Value: 10
+17. Static data member & static function
+C++
+#include <iostream>
+using namespace std;
+
+class Demo {
+public:
+    static int count;
+
+    Demo() { count++; }
+
+    static void showCount() {
+        cout << "Count: " << count << endl;
+    }
+};
+
+int Demo::count = 0;
+
+int main() {
+    Demo d1, d2, d3;
+    Demo::showCount();
+}
+Output:
+
+Count: 3
+18. Array of objects
+C++
+#include <iostream>
+using namespace std;
+
+class Student {
+public:
+    int id;
+    void get() {
+        cin >> id;
+    }
+    void show() {
+        cout << "ID: " << id << endl;
+    }
+};
+
+int main() {
+    Student s[3];
+
+    for(int i=0;i<3;i++) s[i].get();
+    for(int i=0;i<3;i++) s[i].show();
+}
+Output:
+
+Input: 1 2 3
+ID: 1
+ID: 2
+ID: 3
+19. Pass object as function argument
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+};
+
+void display(A obj) {
+    cout << obj.x;
+}
+
+int main() {
+    A a;
+    a.x = 5;
+    display(a);
+}
+Output:
+
+5
+20. Friend function
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+    int x = 10;
+    friend void show(A);
+};
+
+void show(A a) {
+    cout << a.x;
+}
+
+int main() {
+    A obj;
+    show(obj);
+}
+Output:
+
+10
+21. Virtual function
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() {
+        cout << "Base class";
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        cout << "Derived class";
+    }
+};
+
+int main() {
+    Base *b;
+    Derived d;
+    b = &d;
+    b->show();
+}
+Output:
+
+Derived class
+22. Return object from function
+C++
+#include <iostream>
+using namespace std;
+
+class Test {
+public:
+    int x;
+};
+
+Test create() {
+    Test t;
+    t.x = 20;
+    return t;
+}
+
+int main() {
+    Test obj = create();
+    cout << obj.x;
+}
+Output:
+
+20
+23. Constant member function
+C++
+#include <iostream>
+using namespace std;
+
+class Demo {
+public:
+    int x = 5;
+
+    void show() const {
+        cout << x;
+    }
+};
+
+int main() {
+    Demo d;
+    d.show();
+}
+Output:
+
+5
+24. Pointer to members
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x = 10;
+};
+
+int main() {
+    A obj;
+    int A::*ptr = &A::x;
+
+    cout << obj.*ptr;
+}
+Output:
+
+10
+25. Local class
+C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    class Test {
+    public:
+        void show() {
+            cout << "Local class";
+        }
+    };
+
+    Test t;
+    t.show();
+}
+Output:
+
+Local class
+26. Default constructor
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    A() {
+        cout << "Default constructor called";
+    }
+};
+
+int main() {
+    A obj;
+}
+Output:
+
+Default constructor called
+27. Parameterized constructor
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a) {
+        x = a;
+    }
+};
+
+int main() {
+    A obj(10);
+    cout << obj.x;
+}
+Output:
+
+10
+28. Multiple constructors
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    A() {
+        cout << "Default\n";
+    }
+    A(int x) {
+        cout << "Parameterized: " << x;
+    }
+};
+
+int main() {
+    A a1;
+    A a2(5);
+}
+Output:
+
+Default
+Parameterized: 5
+29. Constructor with default arguments
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a=0) {
+        x = a;
+    }
+};
+
+int main() {
+    A a1;
+    A a2(10);
+
+    cout << a1.x << endl;
+    cout << a2.x;
+}
+Output:
+
+0
+10
+30. Dynamic initialization of objects
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a) {
+        x = a;
+    }
+};
+
+int main() {
+    int val;
+    cout << "Enter value: ";
+    cin >> val;
+
+    A obj(val);
+    cout << obj.x;
+}
+Output:
+
+Enter value: 15
+15
+
+32. Destructor
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    ~A() {
+        cout << "Destructor called";
+    }
+};
+
+int main() {
+    A obj;
+}
+Output:
+
+Destructor called
+33. Single Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void show() {
+        cout << "Base class";
+    }
+};
+
+class Derived : public Base {
+};
+
+int main() {
+    Derived d;
+    d.show();
+}
+Output:
+
+Base class
+34. Protected (access private via inheritance concept)
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+protected:
+    int x;
+};
+
+class Derived : public Base {
+public:
+    void set() {
+        x = 10;
+    }
+    void show() {
+        cout << x;
+    }
+};
+
+int main() {
+    Derived d;
+    d.set();
+    d.show();
+}
+Output:
+
+10
+35. Multilevel Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() { cout << "A\n"; }
+};
+
+class B : public A {
+public:
+    void showB() { cout << "B\n"; }
+};
+
+class C : public B {
+public:
+    void showC() { cout << "C"; }
+};
+
+int main() {
+    C obj;
+    obj.showA();
+    obj.showB();
+    obj.showC();
+}
+Output:
+
+A
+B
+C
+36. Hierarchical Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void show() { cout << "Base\n"; }
+};
+
+class D1 : public Base {};
+class D2 : public Base {};
+
+int main() {
+    D1 a;
+    D2 b;
+
+    a.show();
+    b.show();
+}
+Output:
+
+Base
+Base
+37. Multiple Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void showA() { cout << "A\n"; }
+};
+
+class B {
+public:
+    void showB() { cout << "B\n"; }
+};
+
+class C : public A, public B {};
+
+int main() {
+    C obj;
+    obj.showA();
+    obj.showB();
+}
+Output:
+
+A
+B
+38. Hybrid Inheritance
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void show() { cout << "A"; }
+};
+
+class B : public A {};
+class C : public A {};
+class D : public B, public C {};
+
+int main() {
+    D obj;
+    obj.B::show();   // avoid ambiguity
+}
+Output:
+
+A
+39. Virtual Base Class
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x = 10;
+};
+
+class B : virtual public A {};
+class C : virtual public A {};
+class D : public B, public C {};
+
+int main() {
+    D obj;
+    cout << obj.x;
+}
+Output:
+
+10
+40. Abstract Class (Pure Virtual Function)
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() = 0;
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        cout << "Derived class";
+    }
+};
+
+int main() {
+    Derived d;
+    d.show();
+}
+Output:
+
+Derived class
+41. Constructor in Derived Class
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    Base() {
+        cout << "Base Constructor\n";
+    }
+};
+
+class Derived : public Base {
+public:
+    Derived() {
+        cout << "Derived Constructor";
+    }
+};
+
+int main() {
+    Derived d;
+}
+Output:
+
+Base Constructor
+Derived Constructor
+42. Pointer to Derived Class
+C++
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() {
+        cout << "Base";
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        cout << "Derived";
+    }
+};
+
+int main() {
+    Base *ptr;
+    Derived d;
+    ptr = &d;
+    ptr->show();
+}
+Output:
+
+Derived
+43. Operator Overloading (+)
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a) { x = a; }
+
+    A operator+(A obj) {
+        return A(x + obj.x);
+    }
+};
+
+int main() {
+    A a1(5), a2(10);
+    A a3 = a1 + a2;
+
+    cout << a3.x;
+}
+Output:
+
+15
+44. Operator Overloading (==)
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a) { x = a; }
+
+    bool operator==(A obj) {
+        return x == obj.x;
+    }
+};
+
+int main() {
+    A a1(5), a2(5);
+
+    if(a1 == a2)
+        cout << "Equal";
+    else
+        cout << "Not Equal";
+}
+Output:
+
+Equal
+45. Unary Operator Overloading
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    int x;
+    A(int a) { x = a; }
+
+    void operator++() {
+        x++;
+    }
+};
+
+int main() {
+    A a(5);
+    ++a;
+    cout << a.x;
+}
+Output:
+
+6
+46. Operator Overloading using Friend
+C++
+#include <iostream>
+using namespace std;
+
+class A {
+    int x;
+public:
+    A(int a) { x = a; }
+
+    friend A operator+(A, A);
+    void show() { cout << x; }
+};
+
+A operator+(A a1, A a2) {
+    return A(a1.x + a2.x);
+}
+
+int main() {
+    A a1(5), a2(7);
+    A a3 = a1 + a2;
+    a3.show();
+}
+Output:
+
+12
+47. Unformatted I/O (get, put)
+C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    char ch;
+    cin.get(ch);
+    cout.put(ch);
+}
+Output:
+
+Input: A
+A
+48. Formatted I/O (setw, setprecision)
+C++
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    cout << setw(10) << 123 << endl;
+    cout << setprecision(3) << 3.14159;
+}
+Output:
+
+123
+3.14
+49. Manipulators
+C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello" << endl;
+    cout << "World";
+}
+Output:
+
+Hello
+World
+50. Exception Handling (try-catch)
+C++
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 10, b = 0;
+
+    try {
+        if(b == 0)
+            throw "Division by zero";
+        cout << a / b;
+    }
+    catch(const char* msg) {
+        cout << msg;
+    }
+}
+Output:
+
+Division by zero
